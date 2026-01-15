@@ -1,4 +1,5 @@
-# GearMindCo - Manutenção Inteligente
+# GEARMIND - SISTEMA DE MANUTENÇÃO DE MOTOS
+### Quem cuida, roda mais longe.
 
 Seja bem-vindo ao repositório da **GearMindCo**, uma iniciativa focada no estudo e desenvolvimento de soluções em engenharia de dados e machine learning para o setor automotivo. O projeto visa criar um ecossistema de manutenção preditiva para motocicletas.
 
