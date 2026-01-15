@@ -10,5 +10,3 @@ Nossa proposta consiste em desenvolver uma arquitetura de dados *end-to-end* que
 - Desenvolver algoritmos preditivos baseados em histórico de manutenção.
 - Documentar o raciocínio arquitetural e os aprendizados técnicos.
 
-## Autor:
-- Ulisses Ribeiro
