@@ -1,0 +1,21 @@
+Abordagem Híbrida (Regra + Estatística/ML)
+
+Regra “safe by default” (baseline)
+ - Intervalos do manual por peça/moto/ano/óleo (km e tempo).
+ - Limites rígidos de garantia: nunca recomendar além do máximo do manual.
+ - Para óleo e itens com “ou X km ou Y meses”, sempre usar o mais restritivo.
+
+Ajuste por severidade de uso (telemetria/comportamento/ambiente)
+ - Índice de severidade (0–1.5+) considerando: % tempo em trânsito, distância média por trajeto (curto = pior), temperatura ambiente, poeira/terra, pilotagem agressiva (acelerações/frenagens), peso/carga, etanol vs. gasolina, etc.
+ - Ajuste multiplicativo sobre o intervalo do manual (reduz ou amplia conforme severidade).
+
+Aprendizado coletivo (experiência de proprietários)
+ - Modelos de sobrevivência/confiabilidade por peça+modelo (Weibull/Cox) para estimar probabilidade de falha/desempenho vs. km/tempo.
+ - Ou, no MVP, shrinkage Bayesiano: média histórica da comunidade ajusta o manual, com peso controlado pela incerteza (amostra, variância).
+
+Personalização pelo histórico do dono
+ - Tempo/kms reais em que ele trocou, ocorrências de desgaste prematuro, “foi cedo/foi tarde/foi na medida”, e custo.
+ - Ajuste fino (ex.: -8% porque nas últimas 3 trocas as pastilhas chegaram no limite antes).
+
+Explicabilidade
+ - “Recomendado em 1.200 km ou 4 semanas: manual 2.000 km, -20% por trânsito intenso e trajeto curto, -10% pela sua última troca atrasada, -10% por relatos de proprietários do mesmo modelo.”
