@@ -11,8 +11,7 @@
 
     - B. Perfil de uso (questionário simples)
       Esses dados entram no cálculo da “Severidade de Uso”.
-     - Frequência semanal de uso
-     - Quilometragem média diária
+     - Quilometragem média diária (Input de tempos em tempos)
      - Percentual de uso urbano vs estrada
      - Você roda muito em trânsito intenso? (sim/não)
      - Seus trajetos são normalmente curtos (<5 km)? (sim/não)
