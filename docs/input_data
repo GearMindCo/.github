@@ -1,14 +1,81 @@
-Dados Necessários (mínimo viável)
- - Catálogo de manuais estruturado (peça ↔ moto/ano ↔ intervalo km/tempo ↔ tipo de óleo/uso severo).
- - Perfil da moto: marca, modelo, ano, tipo de óleo/medida dos pneus, modificações.
- - Uso & ambiente:
-   - Odometria, km/dia, % urbano, média de velocidade, ciclos curtos (<5 km), aceleração/frenagem forte.
-   - Clima (temp. média), poeira (se roda em estrada de terra), relevo.
- - Eventos de manutenção: data, km, peça trocada, motivo (desgaste/ruptura/programada), feedback (“cedo/tarde/ok”), preço.
- - Comunidade (opt-in): mesmos eventos e feedbacks agregados/anonimizados por peça+modelo.
- - Sem telemetria? Dá para começar com questionário simples no app: “Roda muito em trânsito?”, “Trajetos curtos?”, “Tem estrada de terra?” — e derivar um Índice de Severidade inicial.
+1. Dados que o USUÁRIO precisará imputar
+ - Esses são dados que só o proprietário consegue fornecer — seja no onboarding, atualização ocasional ou no momento da manutenção.
+   - A. Dados sobre a moto:
+     - Marca
+     - Modelo
+     - Ano
+     - Versão (se aplicável)
+     - Quilometragem atual
+     - Tipo de óleo usado (se houver variação)
+     - Se houve modificações relevantes (escapamento, relação diferente, pneus diferentes)
 
-Feedback & Aprendizagem Contínua
- - No momento da troca, perguntar: “Cedo / Na medida / Tarde” + motivo (ruído, perda de freio, aquecimento, visual).
- - Botão “Adiar X km” com justificativa → usado como sinal implícito.
- - Active learning: se incerteza alta, perguntar 1–2 questões rápidas (ex.: “Anda muito em estrada de terra?”).
+    - B. Perfil de uso (questionário simples)
+      Esses dados entram no cálculo da “Severidade de Uso”.
+
+     - Frequência semanal de uso
+     - Quilometragem média diária
+     - Percentual de uso urbano vs estrada
+     - Você roda muito em trânsito intenso? (sim/não)
+     - Seus trajetos são normalmente curtos (<5 km)? (sim/não)
+     - Anda em estrada de terra? (sim/não/às vezes)
+     - Transporta garupa ou carga com frequência? (sim/não)
+
+   - C. Preferências
+     - Canal de alerta (push, e-mail, WhatsApp)
+     - Antecedência desejada para alertas (ex.: 10%, 15%, 20% antes do vencimento)
+
+   - D. Histórico pessoal de manutenção
+     (Preenchido toda vez que uma peça é trocada)
+     - Data da troca
+     - Quilometragem da troca
+     - Qual peça foi trocada
+     - Tipo de peça (ex.: óleo sintético, pastilha metálica, pneu esportivo)
+     - Motivo (desgaste/estourou/preventiva)
+     - Feedback do usuário:
+       “A troca foi...”
+       - Adiantada
+       - Na medida
+       - Atrasada
+
+2. Dados que a APLICAÇÃO irá preencher automaticamente
+Aqui entram dados internos, enriquecimentos externos, cálculos e informações coletadas sem necessidade de esforço do usuário.
+   - A. Dados internos / catálogo
+   (Definidos 100% pela aplicação)
+     - Intervalos do manual do fabricante por peça:
+       - km recomendados
+       - tempo (meses) recomendado
+       - km/tempo máximos
+       - notas de “uso severo”
+     - Especificações técnicas da moto:
+       - Medida dos pneus
+       - Tipo de óleo recomendado
+       - Torque de aperto (se aplicável)
+       - Itens substituíveis e intervalos padrão
+     - Tabelas de peças por marca/modelo (opcional)
+
+   - B. Dados de comunidade (aprendizado coletivo)
+     (A aplicação agrega automaticamente a partir dos usuários)
+     - Média de km por peça até a troca para aquele modelo
+     - Desvio-padrão
+     - Quantis (p50, p75, p90)
+     - Volume de dados por peça/modelo (n)
+     - Taxa de incidentes (ruído, falha, desgaste prematuro)
+
+      Esses dados formam a camada de estatística comunitária usada no ajuste bayesiano.
+
+   - D. Dados derivados calculados pelo sistema
+     (O usuário não vê diretamente)
+     - Índice de Severidade S (0.8–1.5+)
+     - Ajuste pessoal baseado no histórico do usuário
+     - Ajuste comunitário
+     - Previsão de km restante até a troca
+     - Previsão de data estimada
+     - Probabilidade de desgaste prematuro
+     - Risco cumulativo (se usar modelos de sobrevivência)
+     - Confiança do modelo (baixa/média/alta)
+
+   - E. Logs e auditoria
+     - Histórico de recomendações dadas
+     - Resposta assinada do motor de recomendação
+     - Versão do modelo usado
+     - Erros e drifts detectados
