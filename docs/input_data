@@ -1,0 +1,13 @@
+Dados Necessários (mínimo viável)
+
+Catálogo de manuais estruturado (peça ↔ moto/ano ↔ intervalo km/tempo ↔ tipo de óleo/uso severo).
+Perfil da moto: marca, modelo, ano, tipo de óleo/medida dos pneus, modificações.
+Uso & ambiente:
+
+ - Odometria, km/dia, % urbano, média de velocidade, ciclos curtos (<5 km), aceleração/frenagem forte.
+ - Clima (temp. média), poeira (se roda em estrada de terra), relevo.
+
+Eventos de manutenção: data, km, peça trocada, motivo (desgaste/ruptura/programada), feedback (“cedo/tarde/ok”), preço.
+Comunidade (opt-in): mesmos eventos e feedbacks agregados/anonimizados por peça+modelo.
+
+Sem telemetria? Dá para começar com questionário simples no app: “Roda muito em trânsito?”, “Trajetos curtos?”, “Tem estrada de terra?” — e derivar um Índice de Severidade inicial.
